@@ -1,11 +1,16 @@
+import { useState } from "react"
+import { QueryClientProvider } from "@tanstack/react-query"
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from "react-router"
 
 import type { Route } from "./+types/root"
+import { Toaster } from "~/components/ui/toast"
+import { Text } from "~/components/ui/text"
+import { createQueryClient } from "~/lib/query-client"
 import "./app.css"
 
 export function Layout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
+        <html lang="id">
             <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -22,7 +27,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-    return <Outlet />
+    const [queryClient] = useState(createQueryClient)
+
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Outlet />
+            <Toaster />
+        </QueryClientProvider>
+    )
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
@@ -40,8 +52,12 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
     return (
         <main className="container mx-auto p-4 pt-16">
-            <h1>{message}</h1>
-            <p>{details}</p>
+            <Text as="h1" variant="2xl" weight="semibold">
+                {message}
+            </Text>
+            <Text variant="sm" className="text-muted-foreground">
+                {details}
+            </Text>
             {stack && (
                 <pre className="w-full overflow-x-auto p-4">
                     <code>{stack}</code>
