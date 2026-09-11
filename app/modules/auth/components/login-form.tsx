@@ -12,6 +12,7 @@ import { apiErrorMessage, isApiError } from "~/lib/api-error"
 import { loginSchema, type LoginInput } from "../schemas/login.schema"
 import { useLoginMutation } from "../services/auth.mutations"
 import { clearPendingVerificationEmail, setPendingVerificationEmail } from "../services/pending-verification"
+import { Mail } from "lucide-react"
 
 export function LoginForm() {
     const navigate = useNavigate()
@@ -64,15 +65,23 @@ export function LoginForm() {
 
             <Field data-invalid={Boolean(form.formState.errors.email)}>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                    id="email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="nama@email.com"
-                    aria-invalid={Boolean(form.formState.errors.email)}
-                    {...form.register("email")}
-                />
+                <div className="relative">
+                    <Mail
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                    />
+
+                    <Input
+                        id="email"
+                        type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        placeholder="nama@email.com"
+                        className="pl-10"
+                        aria-invalid={Boolean(form.formState.errors.email)}
+                        {...form.register("email")}
+                    />
+                </div>
                 <FieldError errors={[form.formState.errors.email]} />
             </Field>
 
@@ -88,7 +97,7 @@ export function LoginForm() {
                 <FieldError errors={[form.formState.errors.password]} />
             </Field>
 
-            <Button type="submit" size="lg" className="h-11 w-full text-base" disabled={isSubmitting}>
+            <Button type="submit" size="lg" className="h-11 w-full text-base font-semibold" disabled={isSubmitting}>
                 {isSubmitting ? <Spinner className="size-4" /> : null}
                 {isSubmitting ? "Memproses..." : "Masuk"}
             </Button>

@@ -3,8 +3,11 @@ import { QueryClientProvider } from "@tanstack/react-query"
 import { Links, Meta, Outlet, Scripts, ScrollRestoration, isRouteErrorResponse } from "react-router"
 
 import type { Route } from "./+types/root"
+import { InstallPrompt } from "~/components/install-prompt"
+import { OfflineBanner } from "~/components/offline-banner"
 import { Toaster } from "~/components/ui/toast"
 import { Text } from "~/components/ui/text"
+import { useServiceWorker } from "~/hooks/use-service-worker"
 import { createQueryClient } from "~/lib/query-client"
 import "./app.css"
 
@@ -14,6 +17,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <head>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <meta name="theme-color" content="#E90B22" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content="JualAntar" />
+                <link rel="manifest" href="/manifest.webmanifest" />
+                <link rel="apple-touch-icon" href="/favicon.ico" />
                 <Meta />
                 <Links />
             </head>
@@ -28,10 +38,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
     const [queryClient] = useState(createQueryClient)
+    useServiceWorker()
 
     return (
         <QueryClientProvider client={queryClient}>
+            <OfflineBanner />
             <Outlet />
+            <InstallPrompt />
             <Toaster />
         </QueryClientProvider>
     )

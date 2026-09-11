@@ -6,7 +6,7 @@ export function RegisterPage() {
     return (
         <AuthLayout
             title="Buat akun JualAntar"
-            description="Daftar sekali untuk memesan makanan, belanja kebutuhan, dan mengirim paket."
+            description="Daftar sekali untuk memesan makanan, belanja kebutuhan, dan mengakses layanan lainnya."
             footer={
                 <>
                     Sudah punya akun?{" "}

@@ -17,7 +17,7 @@ export function AuthLayout({ title, description, children, footer }: AuthLayoutP
             </header>
             <main className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-6 py-10">
                 <div className="mb-6 space-y-2">
-                    <Text as="h1" variant="2xl" weight="semibold" className="tracking-tight text-balance">
+                    <Text as="h1" variant="2xl" weight="bold" className="tracking-tight text-balance">
                         {title}
                     </Text>
                     {description ? (

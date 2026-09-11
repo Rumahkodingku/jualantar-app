@@ -13,6 +13,7 @@ import { apiErrorMessage, isApiError } from "~/lib/api-error"
 import { setPendingVerificationEmail } from "../services/pending-verification"
 import { registerSchema, type RegisterInput } from "../schemas/register.schema"
 import { useRegisterMutation } from "../services/register.mutations"
+import { Contact, Mail, Phone, User } from "lucide-react"
 
 export function RegisterForm() {
     const navigate = useNavigate()
@@ -76,53 +77,85 @@ export function RegisterForm() {
 
             <Field data-invalid={Boolean(form.formState.errors.full_name)}>
                 <FieldLabel htmlFor="full_name">Nama lengkap</FieldLabel>
-                <Input
-                    id="full_name"
-                    autoComplete="name"
-                    placeholder="Nama sesuai identitas"
-                    aria-invalid={Boolean(form.formState.errors.full_name)}
-                    {...form.register("full_name")}
-                />
+                <div className="relative">
+                    <User
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                    />
+
+                    <Input
+                        id="full_name"
+                        autoComplete="name"
+                        placeholder="Nama sesuai identitas"
+                        aria-invalid={Boolean(form.formState.errors.full_name)}
+                        {...form.register("full_name")}
+                        className="pl-10"
+                    />
+                </div>
                 <FieldError errors={[form.formState.errors.full_name]} />
             </Field>
 
             <Field data-invalid={Boolean(form.formState.errors.username)}>
                 <FieldLabel htmlFor="username">Username</FieldLabel>
-                <Input
-                    id="username"
-                    autoComplete="username"
-                    placeholder="mis. budi_santoso"
-                    aria-invalid={Boolean(form.formState.errors.username)}
-                    {...form.register("username")}
-                />
+                <div className="relative">
+                    <Contact
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                    />
+
+                    <Input
+                        id="username"
+                        autoComplete="username"
+                        placeholder="mis. budi_santoso"
+                        aria-invalid={Boolean(form.formState.errors.username)}
+                        className="pl-10"
+                        {...form.register("username")}
+                    />
+                </div>
                 <FieldError errors={[form.formState.errors.username]} />
             </Field>
 
             <Field data-invalid={Boolean(form.formState.errors.email)}>
                 <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                    id="email"
-                    type="email"
-                    inputMode="email"
-                    autoComplete="email"
-                    placeholder="nama@email.com"
-                    aria-invalid={Boolean(form.formState.errors.email)}
-                    {...form.register("email")}
-                />
+                <div className="relative">
+                    <Mail
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                    />
+
+                    <Input
+                        id="email"
+                        type="email"
+                        inputMode="email"
+                        autoComplete="email"
+                        placeholder="nama@email.com"
+                        aria-invalid={Boolean(form.formState.errors.email)}
+                        {...form.register("email")}
+                        className="pl-10"
+                    />
+                </div>
                 <FieldError errors={[form.formState.errors.email]} />
             </Field>
 
             <Field data-invalid={Boolean(form.formState.errors.phone)}>
                 <FieldLabel htmlFor="phone">Nomor telepon</FieldLabel>
-                <Input
-                    id="phone"
-                    type="tel"
-                    inputMode="tel"
-                    autoComplete="tel"
-                    placeholder="0812 3456 7890"
-                    aria-invalid={Boolean(form.formState.errors.phone)}
-                    {...form.register("phone")}
-                />
+                <div className="relative">
+                    <Phone
+                        aria-hidden="true"
+                        className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-muted-foreground"
+                    />
+
+                    <Input
+                        id="phone"
+                        type="tel"
+                        inputMode="tel"
+                        autoComplete="tel"
+                        placeholder="0812 3456 7890"
+                        aria-invalid={Boolean(form.formState.errors.phone)}
+                        {...form.register("phone")}
+                        className="pl-10"
+                    />
+                </div>
                 <FieldError errors={[form.formState.errors.phone]} />
             </Field>
 
@@ -150,7 +183,7 @@ export function RegisterForm() {
                 <FieldError errors={[form.formState.errors.password_confirmation]} />
             </Field>
 
-            <Button type="submit" size="lg" className="h-11 w-full text-base" disabled={isSubmitting}>
+            <Button type="submit" size="lg" className="h-11 w-full text-base font-semibold" disabled={isSubmitting}>
                 {isSubmitting ? <Spinner className="size-4" /> : null}
                 {isSubmitting ? "Mendaftarkan..." : "Daftar"}
             </Button>

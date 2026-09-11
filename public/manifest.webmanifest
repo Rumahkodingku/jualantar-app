@@ -1,0 +1,21 @@
+{
+    "name": "JualAntar",
+    "short_name": "JualAntar",
+    "description": "Pesan makanan, belanja kebutuhan harian, kirim paket, dan antar jemput dalam satu aplikasi.",
+    "lang": "id",
+    "dir": "ltr",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "orientation": "portrait",
+    "theme_color": "#E90B22",
+    "background_color": "#FFFFFF",
+    "categories": ["food", "shopping", "travel"],
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "any",
+            "type": "image/x-icon"
+        }
+    ]
+}
