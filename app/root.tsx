@@ -23,7 +23,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
                 <meta name="apple-mobile-web-app-title" content="JualAntar" />
                 <link rel="manifest" href="/manifest.webmanifest" />
-                <link rel="apple-touch-icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.ico" sizes="any" />
+                <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192x192.png" />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
                 <Meta />
                 <Links />
             </head>
